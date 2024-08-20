@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "rootDirs": ["."],
     "paths": {
-      "@*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["./src/**/*.ts*"],
