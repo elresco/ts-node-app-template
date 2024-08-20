@@ -1,1 +1,3 @@
-console.log("hello world");
+import envs from "@/envs";
+
+console.log("envs ->", envs);
