@@ -35,8 +35,8 @@ jobs:
             docker stop baf-backend || true && \
             docker rm baf-backend || true && \
             docker run \
-            -p 5544:5544 \
+            -p 5543:5543 \
             -e PRODUCTION=true \
-            -e PORT="5544" \
+            -e PORT="5543" \
             --log-driver json-file --log-opt max-size=10m --log-opt max-file=3 \
             --name=baf-backend -it -d --restart unless-stopped rescode/baf-backend:v0.0.1
