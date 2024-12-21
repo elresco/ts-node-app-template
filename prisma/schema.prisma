@@ -1,0 +1,22 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+enum TransactionStatus {
+    pending
+    completed
+}
+
+model Transaction {
+    id            String            @id @default(uuid())
+    transactionId String            @unique
+    email         String
+    status        TransactionStatus @default(pending)
+    createdAt     DateTime          @default(now())
+    updatedAt     DateTime          @updatedAt()
+}
