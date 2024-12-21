@@ -8,6 +8,6 @@ dotenv.config({
 const envsSchema = z.object({
   NODE_ENV: z.string().min(1),
 });
-const envs = envsSchema.parse(envsSchema);
+const envs = envsSchema.parse(process.env);
 
 export default envs;
