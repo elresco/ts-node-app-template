@@ -2,7 +2,7 @@ import z from "zod";
 import dotenv from "dotenv";
 
 dotenv.config({
-  path: "../.env",
+  path: "./.env",
 });
 
 const envsSchema = z.object({
