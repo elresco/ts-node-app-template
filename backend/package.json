@@ -2,7 +2,7 @@
   "name": "create-ts-node-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "export NODE_ENV=production && ts-node src/index.ts",
     "watch": "nodemon"
   },
   "license": "MIT",
