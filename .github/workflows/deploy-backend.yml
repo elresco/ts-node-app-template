@@ -25,6 +25,16 @@ jobs:
       - name: Deploy with rsync
         run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /var/app/NAME" && rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }}" ./backend ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/app/NAME
 
+      - name: Build Docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            docker build -t rescode/NAME:v0.0.1 /var/app/NAME/backend
+
       - name: Restart Docker
         uses: appleboy/ssh-action@master
         with:
@@ -33,7 +43,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker build -t rescode/NAME:v0.0.1 /var/app/NAME && \
             docker stop NAME || true && \
             docker rm NAME || true && \
             docker run \
